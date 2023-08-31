@@ -1,0 +1,19 @@
+trigger:
+- master
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- script: echo Hello, world!
+  displayName: 'Run a one-line script'
+
+- task: Bash@3
+  inputs:
+    filePath: './cicd-api.sh' # Generic Shell Script file
+
+- task: PublishTestResults@2
+  displayName: 'Publish testsigma test results'
+  inputs:
+    testResultsFormat: 'JUnit' # Test Result Format (corrected capitalization)
+    testResultsFiles: '**/junit-report.xml' # Result File Type (use correct file path)
